@@ -43,7 +43,7 @@ public class CreateSaleCommand : IRequest<CreateSaleResult>
 public class SalesProductDTO
 {
     public long Id { get; set; }
-    public long IdProduct { get; set; }
+    public long ProductId { get; set; }
     public long Quantity { get; set; }
     public double Discount { get; set; }
     public bool Canceled { get; set; }

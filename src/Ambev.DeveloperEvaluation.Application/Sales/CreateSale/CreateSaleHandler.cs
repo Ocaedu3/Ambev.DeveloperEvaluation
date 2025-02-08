@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using FluentValidation;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.Domain.Entities;
-using Ambev.DeveloperEvaluation.Common.Security;
-using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 
@@ -46,7 +43,8 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
         //if (existingUser != null)
         //    throw new InvalidOperationException($"User with email {command.Email} already exists");
 
-        var entity = _mapper.Map<Sale>(command);
+        var entity = _mapper.Map<Sale>(command);//.ForMember(dest => dest.SalesProducts, opt => opt.MapFrom(src => src.SalesProducts));
+        //entity.SalesProducts = _mapper.Map<List<SalesProduct>>(command.SalesProducts);
         //user.Password = _passwordHasher.HashPassword(command.Password);
 
         var created = await _repository.CreateAsync(entity, cancellationToken);

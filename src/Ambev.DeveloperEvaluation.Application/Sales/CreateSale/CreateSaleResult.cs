@@ -9,9 +9,9 @@
 /// </remarks>
 public class CreateSaleResult
 {
-    /// <summary>
-    /// Gets or sets the unique identifier of the newly created user.
-    /// </summary>
-    /// <value>A GUID that uniquely identifies the created user in the system.</value>
-    public long Id { get; set; }
+    public long SaleId { get; set; }
+    public long ClientId { get; set; }
+    public long BranchId { get; set; }
+    public DateTime Date { get; set; }
+    public List<SalesProductDTO> SalesProducts { get; set; }
 }

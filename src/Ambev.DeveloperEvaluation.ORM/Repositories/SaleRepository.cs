@@ -42,7 +42,7 @@ public class SaleRepository : ISaleRepository
     public async Task<Sale?> GetByIdAsync(long id, CancellationToken cancellationToken = default)
     {
         var result =  await _context.Sales.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
-        _context.Entry(result).Collection(x => x.SalesProducts).Load();
+        await _context.Entry(result).Collection(x => x.SalesProducts).LoadAsync();
         return result;
     }
     public async Task<bool> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
