@@ -3,6 +3,7 @@ using MediatR;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.Domain.Entities;
 using FluentValidation;
+using Ambev.DeveloperEvaluation.Domain.Validation;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 
@@ -13,6 +14,7 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
 {
     private readonly IProductRepository _productRepository;
     private readonly ISaleRepository _repository;
+    private readonly SaleValidator _validator;
     private readonly IMapper _mapper;
 
     /// <summary>
@@ -21,8 +23,9 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
     /// <param name="userRepository">The user repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
     /// <param name="validator">The validator for CreateUserCommand</param>
-    public CreateSaleHandler(ISaleRepository repository, IProductRepository productRepository, IMapper mapper)
+    public CreateSaleHandler(SaleValidator validator, ISaleRepository repository, IProductRepository productRepository, IMapper mapper)
     {
+        _validator = validator;
         _repository = repository;
         _productRepository = productRepository;
         _mapper = mapper;
@@ -36,19 +39,29 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
     /// <returns>The created user details</returns>
     public async Task<CreateSaleResult> Handle(CreateSaleCommand command, CancellationToken cancellationToken)
     {
-        var validator = new CreateSaleCommandValidator();
-        var validationResult = await validator.ValidateAsync(command, cancellationToken);
+
+        //string errorsList = "";
+        //foreach (SalesProductDTO saleProduct in command.SalesProducts)
+        //{
+        //    var existingProduct = await _productRepository.GetByIdAsync(saleProduct.ProductId, cancellationToken);
+        //    if (existingProduct == null)
+        //    {
+        //        errorsList = errorsList + ", " + saleProduct.ProductId.ToString();
+        //    }
+        //    if (errorsList != "")
+        //        throw new InvalidOperationException($"The folow products codes: {errorsList} are invalid");
+        //}
+
+        var entity = _mapper.Map<Sale>(command);
+
+        var validationResult = await _validator.ValidateAsync(entity, cancellationToken);
 
         if (!validationResult.IsValid)
             throw new ValidationException(validationResult.Errors);
 
-        //var existingUser = await _repository.GetByEmailAsync(command.Email, cancellationToken);
-        //if (existingUser != null)
-        //    throw new InvalidOperationException($"User with email {command.Email} already exists");
 
-        var entity = _mapper.Map<Sale>(command);
         GetSaleProduct(ref entity);
-        entity.SetFinalPrice();
+        //entity.SetFinalPrice();
 
         var created = await _repository.CreateAsync(entity, cancellationToken);
         var result = _mapper.Map<CreateSaleResult>(created);
@@ -59,9 +72,16 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
     {
         foreach (SalesProduct salesProduct in entity.SalesProducts)
         {
-            salesProduct.Product = _productRepository.GetByIdAsync(salesProduct.ProductId).Result;
-            salesProduct.setDiscount();
-            salesProduct.SetPrice();
+            var result = _productRepository.GetByIdAsync(salesProduct.ProductId).Result;
+            if (result != null)
+            {
+                salesProduct.Product = result;
+                salesProduct.setDiscount();
+                salesProduct.SetPrice();
+            }
+            //salesProduct.Product = _productRepository.GetByIdAsync(salesProduct.ProductId).Result;
+            //salesProduct.setDiscount();
+            //salesProduct.SetPrice();
         }
     }
 }

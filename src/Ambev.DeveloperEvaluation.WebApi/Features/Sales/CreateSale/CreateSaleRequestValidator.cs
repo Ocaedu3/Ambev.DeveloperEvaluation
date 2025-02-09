@@ -23,11 +23,10 @@ public class CreateSaleRequestValidator : AbstractValidator<CreateSaleRequest>
     /// </remarks>
     public CreateSaleRequestValidator()
     {
-        //RuleFor(sale => sale.SalesProducts).SetValidator(new QuantityValidator());
-        //RuleFor(user => user.Username).NotEmpty().Length(3, 50);
-        //RuleFor(user => user.Password).SetValidator(new PasswordValidator());
-        //RuleFor(user => user.Phone).Matches(@"^\+?[1-9]\d{1,14}$");
-        //RuleFor(user => user.Status).NotEqual(UserStatus.Unknown);
-        //RuleFor(user => user.Role).NotEqual(UserRole.None);
+        RuleFor(sale => sale.BranchId).NotEmpty().WithMessage("Branch ID is required");
+        RuleFor(sale => sale.ClientId).NotEmpty().WithMessage("Client ID is required");
+        RuleFor(sale => sale.SalesProducts).NotEmpty().WithMessage("Sale must have be at least 1 item");
+        RuleForEach(sale => sale.SalesProducts)
+            .ChildRules(salesProduct => salesProduct.RuleFor(x => x.Quantity).InclusiveBetween(1,19).WithMessage("Quantity of each item must be between 1 and 19"));
     }
 }

@@ -23,6 +23,6 @@ public class CreateSaleCommandValidator : AbstractValidator<CreateSaleCommand>
     /// </remarks>
     public CreateSaleCommandValidator()
     {
-        RuleForEach(sale => sale.SalesProducts).Where(x => x.Quantity > 20).Null().WithMessage("Quantity of any item have to be less than 20");
+        //RuleForEach(sale => sale.SalesProducts).Where(x => x.Quantity > 20).Null().WithMessage("Quantity of any item have to be less than 20");
     }
 }

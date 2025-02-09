@@ -40,16 +40,16 @@ public class Sale
         CreatedAt = DateTime.UtcNow;
     }
 
-    public ValidationResultDetail Validate()
-    {
-        var validator = new SaleValidator();
-        var result = validator.Validate(this);
-        return new ValidationResultDetail
-        {
-            IsValid = result.IsValid,
-            Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
-        };
-    }
+    //public ValidationResultDetail Validate()
+    //{
+    //    var validator = new SaleValidator();
+    //    var result = validator.Validate(this);
+    //    return new ValidationResultDetail
+    //    {
+    //        IsValid = result.IsValid,
+    //        Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
+    //    };
+    //}
     public void SetFinalPrice()
     {
         SalesFinalPrice = (SalesProducts.Sum(x => x.Price));
