@@ -44,11 +44,11 @@ public class SaleRepository : ISaleRepository
         var result =  await _context.Sales.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
         return result;
     }
-    public async Task<bool> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
+    public async Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
     {
         _context.Sales.Update(sale);
         await _context.SaveChangesAsync(cancellationToken);
-        return true;
+        return sale;
     }
 
     /// <summary>

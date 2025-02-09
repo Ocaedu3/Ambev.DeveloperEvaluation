@@ -39,7 +39,7 @@ public class SaleValidator : AbstractValidator<Sale>
 
     public bool verifyClient(long Id)
     {
-        var result = _branchRepository.GetByIdAsync(Id).Result;
+        var result = _clientRepository.GetByIdAsync(Id).Result;
         if (result != null)
             return true;
         return false;

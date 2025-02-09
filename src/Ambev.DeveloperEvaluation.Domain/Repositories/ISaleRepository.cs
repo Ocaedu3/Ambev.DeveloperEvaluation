@@ -15,7 +15,7 @@ public interface ISaleRepository
     /// <returns>The created user</returns>
     Task<Sale> CreateAsync(Sale sale, CancellationToken cancellationToken = default);
 
-    Task<bool> UpdateAsync(Sale sale, CancellationToken cancellationToken = default);
+    Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken = default);
     /// <summary>
     /// Retrieves a user by their unique identifier
     /// </summary>

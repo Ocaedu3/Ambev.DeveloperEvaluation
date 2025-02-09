@@ -5,12 +5,12 @@ using Ambev.DeveloperEvaluation.Domain.Entities;
 using FluentValidation;
 using Ambev.DeveloperEvaluation.Domain.Validation;
 
-namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
+namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
 /// <summary>
 /// Handler for processing CreateUserCommand requests
 /// </summary>
-public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleResult>
+public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleResult>
 {
     private readonly IProductRepository _productRepository;
     private readonly ISaleRepository _repository;
@@ -23,7 +23,7 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
     /// <param name="userRepository">The user repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
     /// <param name="validator">The validator for CreateUserCommand</param>
-    public CreateSaleHandler(SaleValidator validator, ISaleRepository repository, IProductRepository productRepository, IMapper mapper)
+    public UpdateSaleHandler(SaleValidator validator, ISaleRepository repository, IProductRepository productRepository, IMapper mapper)
     {
         _validator = validator;
         _repository = repository;
@@ -37,7 +37,7 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
     /// <param name="command">The CreateUser command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created user details</returns>
-    public async Task<CreateSaleResult> Handle(CreateSaleCommand command, CancellationToken cancellationToken)
+    public async Task<UpdateSaleResult> Handle(UpdateSaleCommand command, CancellationToken cancellationToken)
     {
         var entity = _mapper.Map<Sale>(command);
 
@@ -46,12 +46,11 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
         if (!validationResult.IsValid)
             throw new ValidationException(validationResult.Errors);
 
-
         GetSaleProduct(ref entity);
         entity.SetFinalPrice();
 
-        var created = await _repository.CreateAsync(entity, cancellationToken);
-        var result = _mapper.Map<CreateSaleResult>(created);
+        var created = await _repository.UpdateAsync(entity, cancellationToken);
+        var result = _mapper.Map<UpdateSaleResult>(created);
         return result;
     }
 
@@ -68,4 +67,6 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
             }
         }
     }
+
+
 }
