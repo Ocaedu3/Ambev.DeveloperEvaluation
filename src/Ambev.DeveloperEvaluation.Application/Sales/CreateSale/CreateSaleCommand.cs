@@ -21,7 +21,6 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 /// </remarks>
 public class CreateSaleCommand : IRequest<CreateSaleResult>
 {
-    public long SaleId { get; set; }
     public long ClientId { get; set; }
     public long BranchId { get; set; }
     public DateTime Date { get; set; }
@@ -42,9 +41,6 @@ public class CreateSaleCommand : IRequest<CreateSaleResult>
 
 public class SalesProductDTO
 {
-    public long Id { get; set; }
     public long ProductId { get; set; }
     public long Quantity { get; set; }
-    public double Discount { get; set; }
-    public bool Canceled { get; set; }
 }

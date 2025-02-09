@@ -33,7 +33,7 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
     /// <returns>The created user details</returns>
     public async Task<CreateSaleResult> Handle(CreateSaleCommand command, CancellationToken cancellationToken)
     {
-        //var validator = new CreateSaleCommandValidator();
+        var validator = new CreateSaleCommandValidator();
         //var validationResult = await validator.ValidateAsync(command, cancellationToken);
 
         //if (!validationResult.IsValid)
@@ -43,9 +43,8 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
         //if (existingUser != null)
         //    throw new InvalidOperationException($"User with email {command.Email} already exists");
 
-        var entity = _mapper.Map<Sale>(command);//.ForMember(dest => dest.SalesProducts, opt => opt.MapFrom(src => src.SalesProducts));
-        //entity.SalesProducts = _mapper.Map<List<SalesProduct>>(command.SalesProducts);
-        //user.Password = _passwordHasher.HashPassword(command.Password);
+        var entity = _mapper.Map<Sale>(command);
+
 
         var created = await _repository.CreateAsync(entity, cancellationToken);
         var result = _mapper.Map<CreateSaleResult>(created);
