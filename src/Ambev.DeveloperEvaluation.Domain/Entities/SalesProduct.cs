@@ -22,17 +22,33 @@ public class SalesProduct
     [Required]
     public Product Product { get; set; }
     [Required]
-    public long Quantity { get; set; } = 0;
+    public long Quantity { get; set; }
     [Required]
-    public decimal Discount { get; set; } = 0;
+    public decimal Discount { get; set; }
     [Required]
-    public bool Canceled { get; set; } = false;
-    [Required]
+    public bool Canceled { get; set; }
     public Sale Sales { get; set; }
     public decimal Price { get; set; }
     public DateTime CreatedAt { get; set; }
+    
     public SalesProduct()
     {
         CreatedAt = DateTime.UtcNow;
+    }
+
+    public void setDiscount()
+    {
+        if (Quantity >= 10)
+        {
+            Discount = 0.2m;
+        }
+        else
+        {
+            Discount = Quantity >= 4 ? 0.1m : 0;
+        }
+    }
+    public void SetPrice()
+    {
+        Price = (this.Product.Price - (this.Product.Price * this.Discount)) * this.Quantity;
     }
 }

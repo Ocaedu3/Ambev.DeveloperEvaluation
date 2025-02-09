@@ -13,8 +13,9 @@ public class CreateSaleProfile : Profile
     /// </summary>
     public CreateSaleProfile()
     {
-        CreateMap<SalesProductDTO, SalesProduct>();//.ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.ProductId));
-        CreateMap<CreateSaleCommand, Sale>();//.ForMember(dest => dest.SalesProducts, opt => opt.MapFrom(src => src.SalesProducts));
+        
+        CreateMap<SalesProductDTO, SalesProduct>();
+        CreateMap<CreateSaleCommand, Sale>();
         CreateMap<SalesProduct, SalesProductDTO>();
         CreateMap<Sale, CreateSaleResult>();
 

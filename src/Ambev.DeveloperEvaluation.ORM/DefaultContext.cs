@@ -22,6 +22,7 @@ public class DefaultContext : DbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Sale>().Navigation(f => f.SalesProducts).AutoInclude();
     }
 }
 public class YourDbContextFactory : IDesignTimeDbContextFactory<DefaultContext>

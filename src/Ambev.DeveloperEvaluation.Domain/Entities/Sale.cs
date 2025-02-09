@@ -3,6 +3,7 @@ using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.Domain.Common;
 using Ambev.DeveloperEvaluation.Domain.Enums;
 using Ambev.DeveloperEvaluation.Domain.Validation;
+using FluentValidation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -39,6 +40,21 @@ public class Sale
         CreatedAt = DateTime.UtcNow;
     }
 
+    public ValidationResultDetail Validate()
+    {
+        var validator = new SaleValidator();
+        var result = validator.Validate(this);
+        return new ValidationResultDetail
+        {
+            IsValid = result.IsValid,
+            Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
+        };
+    }
+    public void SetFinalPrice()
+    {
+        SalesFinalPrice = (SalesProducts.Sum(x => x.Price));
+    }
+
     /// <summary>
     /// Performs validation of the user entity using the UserValidator rules.
     /// </summary>
@@ -71,11 +87,6 @@ public class Sale
     /// Activates the user account.
     /// Changes the user's status to Active.
     /// </summary>
-    public void Activate()
-    {
-        //Status = UserStatus.Active;
-        //UpdatedAt = DateTime.UtcNow;
-    }
 
     /// <summary>
     /// Deactivates the user account.

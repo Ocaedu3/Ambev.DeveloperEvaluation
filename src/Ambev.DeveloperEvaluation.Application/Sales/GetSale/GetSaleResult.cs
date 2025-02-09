@@ -1,6 +1,8 @@
 using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
+using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 
@@ -9,14 +11,23 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 /// </summary>
 public class GetSaleResult
 {
-    [Required]
-    public long SaleId { get; set; }
-    [Required]
+    public long Id { get; set; }
     public long ClientId { get; set; }
-    [Required]
     public long BranchId { get; set; }
-    [Required]
     public DateTime Date { get; set; }
-    [Required]
-    public List<SalesProductDTO> SalesProducts { get; set; }
+    public List<SalesProductGet> SalesProducts { get; set; }
+    public decimal SalesFinalPrice { get; set; }
+    public DateTime CreatedAt { get; set; }
+}
+
+public class SalesProductGet
+{
+    public long Id { get; set; }
+    public long ProductId { get; set; }
+    public long Quantity { get; set; }
+    public decimal Discount { get; set; }
+    public bool Canceled { get; set; }
+    public decimal Price { get; set; }
+    public DateTime CreatedAt { get; set; }
+
 }

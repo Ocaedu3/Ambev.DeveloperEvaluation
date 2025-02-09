@@ -9,7 +9,7 @@
 /// </remarks>
 public class CreateSaleResult
 {
-    public long SaleId { get; set; }
+    public long Id { get; set; }
     public long ClientId { get; set; }
     public long BranchId { get; set; }
     public DateTime Date { get; set; }

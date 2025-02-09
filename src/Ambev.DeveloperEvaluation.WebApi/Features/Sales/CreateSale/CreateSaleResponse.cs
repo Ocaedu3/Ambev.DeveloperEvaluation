@@ -8,7 +8,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
 /// </summary>
 public class CreateSaleResponse
 {
-    public long SaleId { get; set; }
+    public long Id { get; set; }
     public long ClientId { get; set; }
     public long BranchId { get; set; }
     public DateTime Date { get; set; }

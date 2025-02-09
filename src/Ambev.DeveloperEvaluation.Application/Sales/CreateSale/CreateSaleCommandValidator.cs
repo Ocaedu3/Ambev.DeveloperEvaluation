@@ -23,11 +23,6 @@ public class CreateSaleCommandValidator : AbstractValidator<CreateSaleCommand>
     /// </remarks>
     public CreateSaleCommandValidator()
     {
-        //RuleFor(user => user.Email).SetValidator(new EmailValidator());
-        //RuleFor(user => user.Username).NotEmpty().Length(3, 50);
-        //RuleFor(user => user.Password).SetValidator(new PasswordValidator());
-        //RuleFor(user => user.Phone).Matches(@"^\+?[1-9]\d{1,14}$");
-        //RuleFor(user => user.Status).NotEqual(UserStatus.Unknown);
-        //RuleFor(user => user.Role).NotEqual(UserRole.None);
+        RuleForEach(sale => sale.SalesProducts).Where(x => x.Quantity > 20).Null().WithMessage("Quantity of any item have to be less than 20");
     }
 }

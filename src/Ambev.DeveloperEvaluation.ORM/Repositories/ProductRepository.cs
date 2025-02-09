@@ -7,7 +7,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories;
 /// <summary>
 /// Implementation of IUserRepository using Entity Framework Core
 /// </summary>
-public class SaleRepository : ISaleRepository
+public class ProductRepository : IProductRepository
 {
     private readonly DefaultContext _context;
 
@@ -15,7 +15,7 @@ public class SaleRepository : ISaleRepository
     /// Initializes a new instance of UserRepository
     /// </summary>
     /// <param name="context">The database context</param>
-    public SaleRepository(DefaultContext context)
+    public ProductRepository(DefaultContext context)
     {
         _context = context;
     }
@@ -26,11 +26,11 @@ public class SaleRepository : ISaleRepository
     /// <param name="user">The user to create</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created user</returns>
-    public async Task<Sale> CreateAsync(Sale sale, CancellationToken cancellationToken = default)
+    public async Task<Product> CreateAsync(Product product, CancellationToken cancellationToken = default)
     {
-        await _context.Sales.AddAsync(sale, cancellationToken);
+        await _context.Products.AddAsync(product, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
-        return sale;
+        return product;
     }
 
     /// <summary>
@@ -39,14 +39,14 @@ public class SaleRepository : ISaleRepository
     /// <param name="id">The unique identifier of the user</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The user if found, null otherwise</returns>
-    public async Task<Sale?> GetByIdAsync(long id, CancellationToken cancellationToken = default)
+    public async Task<Product?> GetByIdAsync(long id, CancellationToken cancellationToken = default)
     {
-        var result =  await _context.Sales.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
+        var result =  await _context.Products.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
         return result;
     }
-    public async Task<bool> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
+    public async Task<bool> UpdateAsync(Product product, CancellationToken cancellationToken = default)
     {
-        _context.Sales.Update(sale);
+        _context.Products.Update(product);
         await _context.SaveChangesAsync(cancellationToken);
         return true;
     }
@@ -59,11 +59,11 @@ public class SaleRepository : ISaleRepository
     /// <returns>True if the user was deleted, false if not found</returns>
     public async Task<bool> DeleteAsync(long id, CancellationToken cancellationToken = default)
     {
-        var sale = await GetByIdAsync(id, cancellationToken);
-        if (sale == null)
+        var product = await GetByIdAsync(id, cancellationToken);
+        if (product == null)
             return false;
 
-        _context.Sales.Remove(sale);
+        _context.Products.Remove(product);
         await _context.SaveChangesAsync(cancellationToken);
         return true;
     }

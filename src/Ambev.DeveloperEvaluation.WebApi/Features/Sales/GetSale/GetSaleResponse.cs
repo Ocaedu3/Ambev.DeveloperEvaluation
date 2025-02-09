@@ -1,4 +1,6 @@
 using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
+using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
+using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Enums;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
@@ -8,9 +10,11 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 /// </summary>
 public class GetSaleResponse
 {
-    public long SaleId { get; set; }
+    public long Id { get; set; }
     public long ClientId { get; set; }
     public long BranchId { get; set; }
     public DateTime Date { get; set; }
-    public List<SalesProductDTO> SalesProducts { get; set; }
+    public decimal SalesFinalPrice { get; set; }
+    public List<SalesProductGet> SalesProducts { get; set; }
+
 }

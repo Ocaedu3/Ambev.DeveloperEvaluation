@@ -23,7 +23,7 @@ public class CreateSaleRequestValidator : AbstractValidator<CreateSaleRequest>
     /// </remarks>
     public CreateSaleRequestValidator()
     {
-        //RuleFor(sale => sale.).SetValidator(new EmailValidator());
+        //RuleFor(sale => sale.SalesProducts).SetValidator(new QuantityValidator());
         //RuleFor(user => user.Username).NotEmpty().Length(3, 50);
         //RuleFor(user => user.Password).SetValidator(new PasswordValidator());
         //RuleFor(user => user.Phone).Matches(@"^\+?[1-9]\d{1,14}$");

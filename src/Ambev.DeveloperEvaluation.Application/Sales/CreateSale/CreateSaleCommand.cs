@@ -25,18 +25,6 @@ public class CreateSaleCommand : IRequest<CreateSaleResult>
     public long BranchId { get; set; }
     public DateTime Date { get; set; }
     public List<SalesProductDTO> SalesProducts { get; set; }
-
-
-    //public ValidationResultDetail Validate()
-    //{
-    //    var validator = new CreateUserCommandValidator();
-    //    var result = validator.Validate(this);
-    //    return new ValidationResultDetail
-    //    {
-    //        IsValid = result.IsValid,
-    //        Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
-    //    };
-    //}
 }
 
 public class SalesProductDTO
@@ -44,3 +32,5 @@ public class SalesProductDTO
     public long ProductId { get; set; }
     public long Quantity { get; set; }
 }
+
+
