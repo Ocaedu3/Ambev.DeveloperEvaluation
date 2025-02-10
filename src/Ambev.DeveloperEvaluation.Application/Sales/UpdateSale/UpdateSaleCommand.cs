@@ -20,18 +20,41 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 /// </remarks>
 public class UpdateSaleCommand : IRequest<UpdateSaleResult>
 {
+    /// <summary>
+    /// The unique identifier of the sale
+    /// </summary>
     public long Id { get; set; }
+    /// <summary>
+    /// The identifier of the Client of the sale
+    /// </summary>
     public long ClientId { get; set; }
+    /// <summary>
+    /// The identifier of the Branch of the sale
+    /// </summary>
     public long BranchId { get; set; }
-    public DateTime Date { get; set; }
+    /// <summary>
+    /// The list of itens of the sale
+    /// </summary>
     public List<SalesProductUpdate>? SalesProducts { get; set; }
 }
 
 public class SalesProductUpdate
 {
+    /// <summary>
+    /// The unique identifier of the sale item
+    /// </summary>
     public long Id { get; set; }
+    /// <summary>
+    /// The identifier of the Product of the sale item
+    /// </summary>
     public long ProductId { get; set; }
+    /// <summary>
+    /// Quantity of the sale item
+    /// </summary>
     public long Quantity { get; set; }
+    /// <summary>
+    /// Status of the sale item
+    /// </summary>
     public bool Canceled { get; set; }
 }
 

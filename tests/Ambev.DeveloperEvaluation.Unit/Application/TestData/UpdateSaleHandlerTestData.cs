@@ -16,7 +16,6 @@ public static class UpdateSaleHandlerTestData
         var entityFake = new Faker<UpdateSaleResult>("pt_BR")
             .RuleFor(c => c.ClientId, f => f.IndexFaker)
             .RuleFor(c => c.BranchId, f => f.IndexFaker)
-            .RuleFor(c => c.Date, f => f.Date.Recent(100))
             .RuleFor(c => c.SalesProducts, salesProductUpdateFake);
 
         return entityFake;
@@ -27,7 +26,6 @@ public static class UpdateSaleHandlerTestData
         var entityFake = new Faker<UpdateSaleCommand>("pt_BR")
             .RuleFor(c => c.ClientId, f => f.IndexFaker)
             .RuleFor(c => c.BranchId, f => f.IndexFaker)
-            .RuleFor(c => c.Date, f => f.Date.Recent(100))
             .RuleFor(c => c.SalesProducts, salesProductUpdateFake);
 
         return entityFake;
@@ -40,7 +38,6 @@ public static class UpdateSaleHandlerTestData
             .RuleFor(c => c.Id, f => f.IndexFaker)
             .RuleFor(c => c.Branch, branchFake)
             .RuleFor(c => c.Client, clientFake)
-            .RuleFor(c => c.Date, f => f.Date.Recent(100))
             .RuleFor(c => c.SalesFinalPrice, f => f.Random.Decimal(1, 500))
             .RuleFor(c => c.SalesProducts, salesProductFake);
 

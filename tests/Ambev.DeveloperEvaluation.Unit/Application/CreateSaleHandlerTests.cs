@@ -111,7 +111,6 @@ public class CreateSaleHandlerTests
         _mapper.Received(1).Map<Sale>(Arg.Is<CreateSaleCommand>(c =>
             c.BranchId == command.BranchId &&
             c.ClientId == command.ClientId &&
-            c.Date == command.Date &&
             c.SalesProducts == command.SalesProducts));
     }
 }

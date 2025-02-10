@@ -19,7 +19,6 @@ public static class SaleTestData
             .RuleFor(c => c.Branch, branchFake)
             .RuleFor(c => c.ClientId, f => f.Random.Long(1, 1000))
             .RuleFor(c => c.Client, clientFake)
-            .RuleFor(c => c.Date, f => f.Date.Recent(100))
             .RuleFor(c => c.SalesFinalPrice, f => f.Random.Decimal(1, 500))
             .RuleFor(c => c.SalesProducts, salesProductFake);
 

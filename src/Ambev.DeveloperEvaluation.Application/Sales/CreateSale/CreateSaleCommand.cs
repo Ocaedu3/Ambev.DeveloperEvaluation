@@ -30,10 +30,6 @@ public class CreateSaleCommand : IRequest<CreateSaleResult>
     /// </summary>
     public long BranchId { get; set; }
     /// <summary>
-    /// Gets or sets the Date of the sale to be created.
-    /// </summary>
-    public DateTime Date { get; set; }
-    /// <summary>
     /// Gets or sets the SalesProductDTO of the sale to be created.
     /// </summary>
     public List<SalesProductDTO> SalesProducts { get; set; }

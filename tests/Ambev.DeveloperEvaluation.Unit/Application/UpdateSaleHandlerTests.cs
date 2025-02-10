@@ -121,7 +121,6 @@ public class UpdateSaleHandlerTests
             c.Id == command.Id &&
             c.BranchId == command.BranchId &&
             c.ClientId == command.ClientId &&
-            c.Date == command.Date &&
             c.SalesProducts == command.SalesProducts));
     }
 }
