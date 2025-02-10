@@ -13,6 +13,7 @@ public class DefaultContext : DbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<Branch> Branchs { get; set; }
     public DbSet<Client> Client { get; set; }
+    public DbSet<LogEntity> Logs { get; set; }
 
 
     public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
