@@ -22,7 +22,6 @@ public class GetSaleResponse
     /// The identifier of the Branch of the sale
     /// </summary>
     public long BranchId { get; set; }
-    public DateTime Date { get; set; }
     /// <summary>
     /// The final price of the sale whes it was created
     /// </summary>

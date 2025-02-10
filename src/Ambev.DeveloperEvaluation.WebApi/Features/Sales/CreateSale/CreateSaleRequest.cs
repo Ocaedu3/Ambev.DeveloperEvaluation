@@ -16,7 +16,6 @@ public class CreateSaleRequest
     /// The identifier of the Branch of the sale
     /// </summary>
     public long BranchId { get; set; }
-    public DateTime Date { get; set; }
     /// <summary>
     /// The list of itens of the sale
     /// </summary>
