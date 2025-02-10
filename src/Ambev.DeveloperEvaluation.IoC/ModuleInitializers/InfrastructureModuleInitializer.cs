@@ -21,6 +21,7 @@ public class InfrastructureModuleInitializer : IModuleInitializer
         builder.Services.AddScoped<IBranchRepository, BranchRepository>();
         builder.Services.AddScoped<IClientRepository, ClientRepository>();
         builder.Services.AddScoped<ILogRepository, LogRepository>();
+        builder.Services.AddScoped<ISaleValidationHelper, SaleValidationHelper>();
         builder.Services.AddScoped<SaleValidator>();
     }
 }
