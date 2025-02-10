@@ -34,7 +34,7 @@ public class UpdateSaleHandlerTests
     private readonly UpdateSaleHandler _handler;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="CreateUserHandlerTests"/> class.
+    /// Initializes a new instance of the <see cref="CreateSaleHandlerTests"/> class.
     /// Sets up the test dependencies and creates fake data generators.
     /// </summary>
     public UpdateSaleHandlerTests()
@@ -50,7 +50,7 @@ public class UpdateSaleHandlerTests
     }
 
     /// <summary>
-    /// Tests that a valid sale creation request is handled successfully.
+    /// Tests that a valid sale update request is handled successfully.
     /// </summary>
     [Fact(DisplayName = "Valid sale with valid response")]
     public async Task Handle_ValidRequest_ReturnsSuccessResponse()
@@ -79,7 +79,7 @@ public class UpdateSaleHandlerTests
     }
 
     /// <summary>
-    /// Tests that an invalid user creation request throws a validation exception.
+    /// Tests that an invalid sale update request throws a validation exception.
     /// </summary>
     [Fact(DisplayName = "Given invalid sale data When creating user Then throws validation exception")]
     public async Task Handle_InvalidRequest_ThrowsValidationException()

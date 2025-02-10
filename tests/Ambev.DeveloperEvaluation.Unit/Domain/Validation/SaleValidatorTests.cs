@@ -32,14 +32,12 @@ public class SaleValidatorTests
     }
 
     /// <summary>
-    /// Tests that validation passes when all user properties are valid.
-    /// This test verifies that a user with valid:
-    /// - Username (3-50 characters)
-    /// - Password (meets complexity requirements)
-    /// - Email (valid format)
-    /// - Phone (valid Brazilian format)
-    /// - Status (Active/Suspended)
-    /// - Role (Customer/Admin)
+    /// Tests that validation passes when all sale properties are valid.
+    /// This test verifies that a sale with valid data:
+    /// - Valid CLientId
+    /// - Valid BranchId
+    /// - Valid ProductId for each item
+    /// - Valid quantity and general data
     /// passes all validation rules without any errors.
     /// </summary>
     [Fact(DisplayName = "Valid sale should pass all validation rules")]
@@ -59,6 +57,9 @@ public class SaleValidatorTests
         result.ShouldNotHaveAnyValidationErrors();
     }
 
+    /// <summary>
+    /// Tests that validation fails when ClientId is not found.
+    /// </summary>
     [Fact(DisplayName = "Invalid client")]
     public void InvalidClientId()
     {
@@ -75,6 +76,9 @@ public class SaleValidatorTests
         result.ShouldHaveValidationErrorFor(x => x.ClientId);
     }
 
+    /// <summary>
+    /// Tests that validation fails when BranchId is not found.
+    /// </summary>
     [Fact(DisplayName = "Invalid branch")]
     public void InvalidBranchId()
     {
