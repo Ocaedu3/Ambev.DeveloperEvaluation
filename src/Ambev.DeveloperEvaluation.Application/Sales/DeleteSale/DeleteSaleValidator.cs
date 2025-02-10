@@ -8,7 +8,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.DeleteSale;
 public class DeleteSaleValidator : AbstractValidator<DeleteSaleCommand>
 {
     /// <summary>
-    /// Initializes validation rules for GetUserCommand
+    /// Initializes validation rules for GetDeleteCommand
     /// </summary>
     public DeleteSaleValidator()
     {

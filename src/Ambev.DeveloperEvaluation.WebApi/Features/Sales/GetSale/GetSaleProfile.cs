@@ -11,7 +11,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 public class GetSaleProfile : Profile
 {
     /// <summary>
-    /// Initializes the mappings for GetUser feature
+    /// Initializes the mappings for GetSale feature
     /// </summary>
     public GetSaleProfile()
     {

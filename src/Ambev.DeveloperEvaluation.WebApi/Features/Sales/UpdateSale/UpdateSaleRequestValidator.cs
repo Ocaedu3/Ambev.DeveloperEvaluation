@@ -14,12 +14,10 @@ public class UpdateSaleRequestValidator : AbstractValidator<UpdateSaleRequest>
     /// </summary>
     /// <remarks>
     /// Validation rules include:
-    /// - Email: Must be valid format (using EmailValidator)
-    /// - Username: Required, length between 3 and 50 characters
-    /// - Password: Must meet security requirements (using PasswordValidator)
-    /// - Phone: Must match international format (+X XXXXXXXXXX)
-    /// - Status: Cannot be Unknown
-    /// - Role: Cannot be None
+    /// - BranchId: Required
+    /// - ClientId: Required
+    /// - SalesProducts.Quantity: Must be between 1 and 19
+    /// - SalesProducts.Canceled: Cannot be null
     /// </remarks>
     public UpdateSaleRequestValidator()
     {

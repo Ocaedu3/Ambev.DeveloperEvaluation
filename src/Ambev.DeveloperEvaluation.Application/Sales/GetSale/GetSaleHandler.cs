@@ -6,7 +6,7 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 
 /// <summary>
-/// Handler for processing GetUserCommand requests
+/// Handler for processing GetSaleCommand requests
 /// </summary>
 public class GetSaleHandler : IRequestHandler<GetSaleCommand, GetSaleResult>
 {
@@ -18,7 +18,7 @@ public class GetSaleHandler : IRequestHandler<GetSaleCommand, GetSaleResult>
     /// </summary>
     /// <param name="userRepository">The user repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    /// <param name="validator">The validator for GetUserCommand</param>
+    /// <param name="validator">The validator for GetSaleCommand</param>
     public GetSaleHandler(
         ISaleRepository respository,
         IMapper mapper)
@@ -28,11 +28,11 @@ public class GetSaleHandler : IRequestHandler<GetSaleCommand, GetSaleResult>
     }
 
     /// <summary>
-    /// Handles the GetUserCommand request
+    /// Handles the GetSaleCommand request
     /// </summary>
-    /// <param name="request">The GetUser command</param>
+    /// <param name="request">The GetSale command</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The user details if found</returns>
+    /// <returns>The sale details if found</returns>
     public async Task<GetSaleResult> Handle(GetSaleCommand request, CancellationToken cancellationToken)
     {
         var validator = new GetSaleValidator();

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
 /// <summary>
-/// Handler for processing CreateUserCommand requests
+/// Handler for processing CreateSaleCommand requests
 /// </summary>
 public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleResult>
 {
@@ -23,9 +23,10 @@ public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleRe
     /// <summary>
     /// Initializes a new instance of CreateUserHandler
     /// </summary>
-    /// <param name="userRepository">The user repository</param>
+    /// <param name="_repository">The sale repository</param>
+    /// <param name="_productRepository">The log repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    /// <param name="validator">The validator for CreateUserCommand</param>
+    /// <param name="validator">The validator for SaleUserCommand</param>
     public UpdateSaleHandler(SaleValidator validator, ISaleRepository repository, IProductRepository productRepository,
         ILogRepository logRepository, IMapper mapper)
     {
@@ -37,11 +38,11 @@ public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleRe
     }
 
     /// <summary>
-    /// Handles the CreateUserCommand request
+    /// Handles the UpdateSaleCommand request
     /// </summary>
-    /// <param name="command">The CreateUser command</param>
+    /// <param name="command">The UpdateSale command</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The created user details</returns>
+    /// <returns>The created sale details</returns>
     public async Task<UpdateSaleResult> Handle(UpdateSaleCommand command, CancellationToken cancellationToken)
     {
         var entity = _mapper.Map<Sale>(command);
@@ -62,7 +63,10 @@ public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleRe
 
         return result;
     }
-
+    /// <summary>
+    /// Fill the product entity for each SalesProduct id product
+    /// </summary>
+    /// <param name="salesProduct">SalesProduct</param>
     public void GetSaleProduct(ref Sale entity)
     {
         foreach (SalesProduct salesProduct in entity.SalesProducts)
@@ -76,7 +80,11 @@ public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleRe
             }
         }
     }
-
+    /// <summary>
+    /// Log the the when itens or sales are canceled
+    /// </summary>
+    /// <param name="entity">List<SalesProductUpdate></param>
+    /// <param name="SaleId">long</param>
     public void VerifyCanceled(List<SalesProductUpdate> entity, long SaleId)
     {
         var sale = _repository.GetByIdAsync(SaleId).Result;

@@ -10,19 +10,11 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 public class UpdateSaleCommandValidator : AbstractValidator<UpdateSaleCommand>
 {
     /// <summary>
-    /// Initializes a new instance of the CreateUserCommandValidator with defined validation rules.
+    /// Initializes a new instance of the CreateSaleCommandValidator with defined validation rules.
     /// </summary>
     /// <remarks>
-    /// Validation rules include:
-    /// - Email: Must be in valid format (using EmailValidator)
-    /// - Username: Required, must be between 3 and 50 characters
-    /// - Password: Must meet security requirements (using PasswordValidator)
-    /// - Phone: Must match international format (+X XXXXXXXXXX)
-    /// - Status: Cannot be set to Unknown
-    /// - Role: Cannot be set to None
-    /// </remarks>
+
     public UpdateSaleCommandValidator()
     {
-        //RuleForEach(sale => sale.SalesProducts).Where(x => x.Quantity > 20).Null().WithMessage("Quantity of any item have to be less than 20");
     }
 }

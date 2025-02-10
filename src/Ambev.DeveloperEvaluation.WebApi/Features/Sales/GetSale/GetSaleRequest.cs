@@ -1,12 +1,12 @@
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 
 /// <summary>
-/// Request model for getting a user by ID
+/// Request model for getting a sale by ID
 /// </summary>
 public class GetSaleRequest
 {
     /// <summary>
-    /// The unique identifier of the user to retrieve
+    /// The unique identifier of the sale to retrieve
     /// </summary>
     public long Id { get; set; }
 }

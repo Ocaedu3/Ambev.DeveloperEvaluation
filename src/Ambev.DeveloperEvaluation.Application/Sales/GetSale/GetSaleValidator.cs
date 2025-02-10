@@ -8,7 +8,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 public class GetSaleValidator : AbstractValidator<GetSaleCommand>
 {
     /// <summary>
-    /// Initializes validation rules for GetUserCommand
+    /// Initializes validation rules for GetSaleCommand
     /// </summary>
     public GetSaleValidator()
     {

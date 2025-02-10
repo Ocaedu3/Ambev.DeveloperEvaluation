@@ -12,10 +12,10 @@ public class DeleteSaleHandler : IRequestHandler<DeleteSaleCommand, DeleteSaleRe
     private readonly ISaleRepository _repository;
 
     /// <summary>
-    /// Initializes a new instance of DeleteUserHandler
+    /// Initializes a new instance of SaleSaleHandler
     /// </summary>
-    /// <param name="userRepository">The user repository</param>
-    /// <param name="validator">The validator for DeleteUserCommand</param>
+    /// <param name="userRepository">The sale repository</param>
+    /// <param name="validator">The validator for SaleUserCommand</param>
     public DeleteSaleHandler(
         ISaleRepository repository)
     {
@@ -23,9 +23,9 @@ public class DeleteSaleHandler : IRequestHandler<DeleteSaleCommand, DeleteSaleRe
     }
 
     /// <summary>
-    /// Handles the DeleteUserCommand request
+    /// Handles the SaleUserCommand request
     /// </summary>
-    /// <param name="request">The DeleteUser command</param>
+    /// <param name="request">The sale delete command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The result of the delete operation</returns>
     public async Task<DeleteSaleResponse> Handle(DeleteSaleCommand request, CancellationToken cancellationToken)

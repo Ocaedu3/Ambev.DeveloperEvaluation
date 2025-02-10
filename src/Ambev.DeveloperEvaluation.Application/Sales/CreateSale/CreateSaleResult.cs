@@ -14,8 +14,20 @@ public class CreateSaleResult
     /// </summary>
     /// <value>A long autogenerate by database that uniquely identifies the created user in the system.</value>
     public long Id { get; set; }
+    /// <summary>
+    /// Gets or sets the ClientId of the sale to be created.
+    /// </summary>
     public long ClientId { get; set; }
+    /// <summary>
+    /// Gets or sets the BranchId of the sale to be created.
+    /// </summary>
     public long BranchId { get; set; }
+    /// <summary>
+    /// Gets or sets the Date of the sale to be created.
+    /// </summary>
     public DateTime Date { get; set; }
+    /// <summary>
+    /// Gets or sets the SalesProductDTO of the sale to be created.
+    /// </summary>
     public List<SalesProductDTO> SalesProducts { get; set; }
 }

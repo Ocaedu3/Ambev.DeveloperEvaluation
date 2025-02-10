@@ -10,16 +10,14 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
 public class CreateSaleRequestValidator : AbstractValidator<CreateSaleRequest>
 {
     /// <summary>
-    /// Initializes a new instance of the CreateUserRequestValidator with defined validation rules.
+    /// Initializes a new instance of the CreateSaleRequestValidator with defined validation rules.
     /// </summary>
     /// <remarks>
     /// Validation rules include:
-    /// - Email: Must be valid format (using EmailValidator)
-    /// - Username: Required, length between 3 and 50 characters
-    /// - Password: Must meet security requirements (using PasswordValidator)
-    /// - Phone: Must match international format (+X XXXXXXXXXX)
-    /// - Status: Cannot be Unknown
-    /// - Role: Cannot be None
+    /// - BranchId: Must be already in the database Branch table
+    /// - ClientId: Must be already in the database Client table
+    /// - SalesProducts: Must have at least 1 item
+    /// - SalesProducts.Quantity: Must be between 1 and 19
     /// </remarks>
     public CreateSaleRequestValidator()
     {

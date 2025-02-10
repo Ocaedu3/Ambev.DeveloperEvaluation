@@ -6,7 +6,7 @@ using AutoMapper;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.DeleteSale;
 
 /// <summary>
-/// Profile for mapping GetUser feature requests to commands
+/// Profile for mapping GetSale feature requests to commands
 /// </summary>
 public class DeleteSaleProfile : Profile
 {
