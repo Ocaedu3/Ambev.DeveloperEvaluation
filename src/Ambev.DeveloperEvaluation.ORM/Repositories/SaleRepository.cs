@@ -1,5 +1,6 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories;
@@ -46,7 +47,26 @@ public class SaleRepository : ISaleRepository
     }
     public async Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
     {
-        _context.Set<Sale>().Update(sale);
+        var result = _context.Sales.First(a => a.Id == sale.Id);
+
+        result.BranchId = sale.BranchId;
+        result.ClientId = sale.ClientId;
+        foreach (var currentEntity in result.SalesProducts)
+        {
+            foreach (var newEntiy in sale.SalesProducts)
+            {
+                if (newEntiy.Id == currentEntity.Id)
+                {
+                    currentEntity.Price = newEntiy.Price;
+                    currentEntity.Product= newEntiy.Product;
+                    currentEntity.Quantity = newEntiy.Quantity;
+                    currentEntity.Canceled = newEntiy.Canceled;
+                    currentEntity.CreatedAt = newEntiy.CreatedAt;
+                    currentEntity.Discount = newEntiy.Discount;
+                }
+            }
+        }
+        result.SetFinalPrice();
         await _context.SaveChangesAsync(cancellationToken);
         return sale;
     }
