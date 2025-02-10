@@ -105,8 +105,5 @@ public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleRe
             _logRepository.Create(logEntity);
         }
 
-
-
-
     }
 }

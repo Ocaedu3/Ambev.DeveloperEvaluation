@@ -4,12 +4,12 @@ using Ambev.DeveloperEvaluation.Domain.Entities;
 namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 
 /// <summary>
-/// Profile for mapping between User entity and CreateUserResponse
+/// Profile for mapping between User entity and CreateSaleResponse
 /// </summary>
 public class CreateSaleProfile : Profile
 {
     /// <summary>
-    /// Initializes the mappings for CreateUser operation
+    /// Initializes the mappings for CreateSale operation
     /// </summary>
     public CreateSaleProfile()
     {

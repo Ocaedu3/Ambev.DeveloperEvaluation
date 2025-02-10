@@ -1,4 +1,5 @@
 using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
+using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
 using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Enums;
@@ -6,32 +7,28 @@ using Bogus;
 
 namespace Ambev.DeveloperEvaluation.Unit.Domain;
 
-/// <summary>
-/// Provides methods for generating test data using the Bogus library.
-/// This class centralizes all test data generation to ensure consistency
-/// across test cases and provide both valid and invalid data scenarios.
-/// </summary>
-public static class CreateSaleHandlerTestData
+
+public static class UpdateSaleHandlerTestData
 {
 
-    public static CreateSaleResult CreateSaleResultFake()
+    public static UpdateSaleResult UpdateSaleResultFake()
     {
-        var entityFake = new Faker<CreateSaleResult>("pt_BR")
+        var entityFake = new Faker<UpdateSaleResult>("pt_BR")
             .RuleFor(c => c.ClientId, f => f.IndexFaker)
             .RuleFor(c => c.BranchId, f => f.IndexFaker)
             .RuleFor(c => c.Date, f => f.Date.Recent(100))
-            .RuleFor(c => c.SalesProducts, salesProductDTOFake);
+            .RuleFor(c => c.SalesProducts, salesProductUpdateFake);
 
         return entityFake;
     }
 
-    public static CreateSaleCommand CreateSaleCommandFake()
+    public static UpdateSaleCommand UpdateSaleCommandFake()
     {
-        var entityFake = new Faker<CreateSaleCommand>("pt_BR")
+        var entityFake = new Faker<UpdateSaleCommand>("pt_BR")
             .RuleFor(c => c.ClientId, f => f.IndexFaker)
             .RuleFor(c => c.BranchId, f => f.IndexFaker)
             .RuleFor(c => c.Date, f => f.Date.Recent(100))
-            .RuleFor(c => c.SalesProducts, salesProductDTOFake);
+            .RuleFor(c => c.SalesProducts, salesProductUpdateFake);
 
         return entityFake;
     }
@@ -49,12 +46,13 @@ public static class CreateSaleHandlerTestData
 
         return entityFake;
     }
-
-    public static List<SalesProductDTO> salesProductDTOFake()
+        public static List<SalesProductUpdate> salesProductUpdateFake()
     {
-        var entityFake = new Faker<SalesProductDTO>("pt_BR")
+        var entityFake = new Faker<SalesProductUpdate>("pt_BR")
+            .RuleFor(c => c.Id,  f => f.IndexFaker)
             .RuleFor(c => c.ProductId, 1)
-            .RuleFor(c => c.Quantity, f => f.Random.Int(1, 19));
+            .RuleFor(c => c.Quantity, f => f.Random.Int(1, 19))
+            .RuleFor(c => c.Canceled, f => f.Random.Bool());
         var result = entityFake.Generate(5);
 
         return result;
